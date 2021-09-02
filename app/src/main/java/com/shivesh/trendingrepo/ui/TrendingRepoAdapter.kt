@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shivesh.trendingrepo.R
 import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.databinding.ItemRepositoryBinding
 import com.shivesh.trendingrepo.utils.ImageUtils
 import com.shivesh.trendingrepo.utils.NumberFormatter
 import com.shivesh.trendingrepo.utils.ViewUtils
 import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
-import kotlinx.android.synthetic.main.item_repository.view.*
 import kotlin.properties.Delegates
 
 /**
@@ -24,8 +24,8 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
      * inflates the itemview
      * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReposViewHolder {
-        return ReposViewHolder(LayoutInflater.from(parent.context)
-                                   .inflate(R.layout.item_repository, parent, false))
+        val binding = ItemRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ReposViewHolder(binding)
     }
 
     /**
@@ -42,11 +42,11 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
         holder.bind(list[position], (position == selectedPosition))
     }
 
-    inner class ReposViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ReposViewHolder(val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             setSelectionPrev()
 
-            itemView.layoutParent.setOnClickListener {
+            binding.layoutParent.setOnClickListener {
                 selectedPosition = adapterPosition
                 notifyItemChanged(adapterPosition)
                 viewModel.setSelectedWithIndex(adapterPosition)
@@ -54,14 +54,14 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
         }
 
         fun bind(item: TrendingRepoResponse.ItemsObj, selected: Boolean) {
-            itemView.apply { //using data binding to refer xml views directly
+            binding.apply { //using data binding to refer xml views directly
                 txvTitle.text = item.name
                 txvForks.text =
                     itemView.resources.getString(R.string.forks, NumberFormatter.formatDecimalNum(item.forksCount))
                 txvDescription.text = item.description
 
                 when {
-                    item.forksCount > 0 -> imvFork.visibility = View.VISIBLE
+                    item.forksCount > 0 -> binding.imvFork.visibility = View.VISIBLE
                 }
                 val radius = 10
                 ImageUtils.loadImage(context, item.owner.avatar, R.drawable.ic_launcher_foreground, imvAvatar, radius)
