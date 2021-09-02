@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shivesh.trendingrepo.R
-import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import com.shivesh.trendingrepo.databinding.TrendingActivityBinding
 import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
 
@@ -22,7 +22,7 @@ import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
  */
 class TrendingActivity : AppCompatActivity() {
     private lateinit var viewModel: TrendingRepoViewModel
-    private lateinit var listRepos: ArrayList<TrendingRepoResponse.ItemsObj>
+    private lateinit var listRepos: ArrayList<TrendingRepositoryResponse.Repositories>
     private lateinit var binding: TrendingActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +56,8 @@ class TrendingActivity : AppCompatActivity() {
         return true
     }
 
-    fun updateList(list: List<TrendingRepoResponse.ItemsObj>) {
-        (binding.rvTrending.adapter as TrendingRepoAdapter).updateList(list)
+    fun updateList(list: List<TrendingRepositoryResponse.Repositories>) {
+        (binding.rvTrending.adapter as TrendingRepoAdapter).filteredList(list)
     }
 
     override fun onBackPressed() {

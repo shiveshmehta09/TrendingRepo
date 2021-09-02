@@ -15,9 +15,6 @@ abstract class BaseNetworkClient <S>(baseURL: String) {
     private val retrofit: Retrofit
     var service: S? = null
 
-    /**
-     * sets up Http client whenever subclassed by a module specific API client
-     * */
     init {
         retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
@@ -27,9 +24,6 @@ abstract class BaseNetworkClient <S>(baseURL: String) {
         createAPIService()
     }
 
-    /**
-     * parse APIServiceClass by forced override in subclass
-     * */
     abstract fun getApiServiceClass(): Class<out S>
 
     /**
@@ -39,6 +33,9 @@ abstract class BaseNetworkClient <S>(baseURL: String) {
         service = retrofit.create(getApiServiceClass())
     }
 
+    /**
+     * fun to get GSON
+     */
     private fun getGsonConverter(): Gson {
         return GsonBuilder().create()
     }

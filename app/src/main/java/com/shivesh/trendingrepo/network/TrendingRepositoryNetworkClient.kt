@@ -1,6 +1,6 @@
 package com.shivesh.trendingrepo.network
 
-import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import retrofit2.Call
 
 /**
@@ -38,7 +38,7 @@ class TrendingRepositoryNetworkClient (baseUrl: String) : BaseNetworkClient<ApiS
     /**
      * service fun to fetch trending repos
      */
-    fun getTrendingRepos(): Call<TrendingRepoResponse>? {
+    fun getTrendingRepos(): Call<TrendingRepositoryResponse>? {
         return service?.getTrendingRepos(platform, itemsCount, page)
     }
 }

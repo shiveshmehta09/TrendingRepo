@@ -1,6 +1,6 @@
 package com.shivesh.trendingrepo.network
 
-import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,5 +15,5 @@ interface ApiService {
         @Query("q") platform: String,
         @Query("per_page") itemsPerPage: Int,
         @Query("page") page: Int,
-    ): Call<TrendingRepoResponse>
+    ): Call<TrendingRepositoryResponse>
 }

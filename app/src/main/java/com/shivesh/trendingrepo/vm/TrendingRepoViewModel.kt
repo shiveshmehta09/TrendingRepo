@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import com.shivesh.trendingrepo.repository.NetworkRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -18,7 +18,7 @@ import retrofit2.Response
  * Version 2.0 KTX
  */
 class TrendingRepoViewModel(var stateHandle: SavedStateHandle) : ViewModel() {
-    private var identifier: String = "SAVED_POS"
+    private var identifier: String = "SAVED_POSITION"
 
     fun getSelectedIndex(): LiveData<Int> {
         return stateHandle.getLiveData(identifier)
@@ -28,26 +28,26 @@ class TrendingRepoViewModel(var stateHandle: SavedStateHandle) : ViewModel() {
         stateHandle.set(identifier, position)
     }
 
-    var reposList = MutableLiveData<TrendingRepoResponse>().apply {
-        viewModelScope.launch { fetchRepos() }
+    var reposList = MutableLiveData<TrendingRepositoryResponse>().apply {
+        viewModelScope.launch { fetchRepositories() }
     }
 
     /**
-     * fun executes the fetch API call
+     * To fetch trending repos
      * */
-    private fun fetchRepos() {
+    private fun fetchRepositories() {
         val response =
             NetworkRepository.getTrendingRepos()
-        response?.enqueue(object : Callback<TrendingRepoResponse> {
+        response?.enqueue(object : Callback<TrendingRepositoryResponse> {
             override fun onResponse(
-                call: Call<TrendingRepoResponse>,
-                response: Response<TrendingRepoResponse>
+                call: Call<TrendingRepositoryResponse>,
+                response: Response<TrendingRepositoryResponse>
             ) {
                 reposList.postValue(response.body()) //updates the live data obj asynchronously
             }
 
-            override fun onFailure(call: Call<TrendingRepoResponse>, t: Throwable) {
-                t.message?.let { Log.e("error-----------> ", it) }
+            override fun onFailure(call: Call<TrendingRepositoryResponse>, t: Throwable) {
+                t.message?.let { Log.e("failed---> ", it) }
             }
         })
     }}

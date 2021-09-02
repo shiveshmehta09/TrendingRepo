@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shivesh.trendingrepo.R
-import com.shivesh.trendingrepo.data.TrendingRepoResponse
+import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import com.shivesh.trendingrepo.databinding.ItemRepositoryBinding
-import com.shivesh.trendingrepo.utils.ImageUtils
-import com.shivesh.trendingrepo.utils.NumberFormatter
-import com.shivesh.trendingrepo.utils.ViewUtils
+import com.shivesh.trendingrepo.utils.fetchImage
+import com.shivesh.trendingrepo.utils.formatDecimalNum
+import com.shivesh.trendingrepo.utils.showToast
 import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
 import kotlin.properties.Delegates
 
@@ -18,7 +18,7 @@ import kotlin.properties.Delegates
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
  */
-class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayList<TrendingRepoResponse.ItemsObj>,
+class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayList<TrendingRepositoryResponse.Repositories>,
                           private val context: Context) : RecyclerView.Adapter<TrendingRepoAdapter.ReposViewHolder>() {
     /**
      * inflates the itemview
@@ -53,25 +53,25 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
             }
         }
 
-        fun bind(item: TrendingRepoResponse.ItemsObj, selected: Boolean) {
+        fun bind(item: TrendingRepositoryResponse.Repositories, selected: Boolean) {
             binding.apply { //using data binding to refer xml views directly
                 txvTitle.text = item.name
                 txvForks.text =
-                    itemView.resources.getString(R.string.forks, NumberFormatter.formatDecimalNum(item.forksCount))
+                    itemView.resources.getString(R.string.forks, formatDecimalNum(item.forksCount))
                 txvDescription.text = item.description
 
                 when {
                     item.forksCount > 0 -> binding.imvFork.visibility = View.VISIBLE
                 }
                 val radius = 10
-                ImageUtils.loadImage(context, item.owner.avatar, R.drawable.ic_launcher_foreground, imvAvatar, radius)
+                imvAvatar.fetchImage(context, item.owner.avatar, R.drawable.ic_launcher_foreground, radius)
                 layoutParent.isSelected = selected
             }
         }
     }
 
     /**
-     * when the config changes & something was selected before config change
+     * when the configuration changed & something was selected before configuration changes
      * */
     fun setSelectionPrev() {
         if (selectedPosition == -1 && viewModel.getSelectedIndex().value != null) {
@@ -81,7 +81,7 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
 
     override fun getItemCount(): Int {
         if (list.size < 1) {
-            ViewUtils.showToast(context, context.resources.getString(R.string.msg_empty_string))
+            context.showToast( context.resources.getString(R.string.msg_empty_string))
         }
         return list.size
     }
@@ -89,7 +89,7 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
     /**
      * filtered list on user search
      * */
-    fun updateList(repos: List<TrendingRepoResponse.ItemsObj>) {
+    fun filteredList(repos: List<TrendingRepositoryResponse.Repositories>) {
         list = repos as ArrayList
         notifyDataSetChanged()
     }
