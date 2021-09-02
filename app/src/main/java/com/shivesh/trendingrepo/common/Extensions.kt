@@ -1,4 +1,4 @@
-package com.shivesh.trendingrepo.utils
+package com.shivesh.trendingrepo.common
 
 import android.content.Context
 import android.widget.ImageView
@@ -12,42 +12,7 @@ import java.text.DecimalFormat
 /**
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
- *//*
-class ImageUtils {
-    companion object {
-        fun loadImage(
-            context: Context,
-            url: String,
-            placeHolder: Int,
-            imageView: ImageView,
-            radius: Int
-        ) {
-            val requestOptions = RequestOptions().placeholder(placeHolder).centerCrop()
-            Glide.with(context).load(url)
-                .apply(requestOptions.transform(CenterCrop(), RoundedCorners(radius)))
-                .into(imageView)
-        }
-    }
-}
-
-class NumberFormatter {
-    companion object {
-        fun formatDecimalNum(decimalNum: Double): String {
-            var numPattern = DecimalFormat("###")
-            return numPattern.format(decimalNum)
-        }
-    }
-}
-
-class ViewUtils {
-    companion object {
-        fun showToast(context: Context, msg: String) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-        }
-    }
-}
-*/
-
+ */
 fun ImageView.fetchImage(context: Context, url: String, placeHolder: Int, radius: Int) {
     val requestOptions = RequestOptions().placeholder(placeHolder)
         .centerCrop()

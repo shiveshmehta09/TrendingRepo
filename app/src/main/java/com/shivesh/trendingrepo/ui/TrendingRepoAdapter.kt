@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shivesh.trendingrepo.R
+import com.shivesh.trendingrepo.common.fetchImage
+import com.shivesh.trendingrepo.common.formatDecimalNum
+import com.shivesh.trendingrepo.common.showToast
 import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import com.shivesh.trendingrepo.databinding.ItemRepositoryBinding
-import com.shivesh.trendingrepo.utils.fetchImage
-import com.shivesh.trendingrepo.utils.formatDecimalNum
-import com.shivesh.trendingrepo.utils.showToast
 import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
 import kotlin.properties.Delegates
 
@@ -18,7 +18,8 @@ import kotlin.properties.Delegates
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
  */
-class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayList<TrendingRepositoryResponse.Repositories>,
+class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel,
+                          var list: ArrayList<TrendingRepositoryResponse.Repositories>,
                           private val context: Context) : RecyclerView.Adapter<TrendingRepoAdapter.ReposViewHolder>() {
     /**
      * inflates the itemview
@@ -56,8 +57,7 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
         fun bind(item: TrendingRepositoryResponse.Repositories, selected: Boolean) {
             binding.apply { //using data binding to refer xml views directly
                 txvTitle.text = item.name
-                txvForks.text =
-                    itemView.resources.getString(R.string.forks, formatDecimalNum(item.forksCount))
+                txvForks.text = itemView.resources.getString(R.string.forks, formatDecimalNum(item.forksCount))
                 txvDescription.text = item.description
 
                 when {
@@ -81,7 +81,7 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel, var list: ArrayL
 
     override fun getItemCount(): Int {
         if (list.size < 1) {
-            context.showToast( context.resources.getString(R.string.msg_empty_string))
+            context.showToast(context.resources.getString(R.string.msg_empty_string))
         }
         return list.size
     }

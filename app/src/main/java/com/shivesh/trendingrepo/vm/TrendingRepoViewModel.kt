@@ -36,13 +36,10 @@ class TrendingRepoViewModel(var stateHandle: SavedStateHandle) : ViewModel() {
      * To fetch trending repos
      * */
     private fun fetchRepositories() {
-        val response =
-            NetworkRepository.getTrendingRepos()
+        val response = NetworkRepository.getTrendingRepos()
         response?.enqueue(object : Callback<TrendingRepositoryResponse> {
-            override fun onResponse(
-                call: Call<TrendingRepositoryResponse>,
-                response: Response<TrendingRepositoryResponse>
-            ) {
+            override fun onResponse(call: Call<TrendingRepositoryResponse>,
+                                    response: Response<TrendingRepositoryResponse>) {
                 reposList.postValue(response.body()) //updates the live data obj asynchronously
             }
 
@@ -50,4 +47,5 @@ class TrendingRepoViewModel(var stateHandle: SavedStateHandle) : ViewModel() {
                 t.message?.let { Log.e("failed---> ", it) }
             }
         })
-    }}
+    }
+}

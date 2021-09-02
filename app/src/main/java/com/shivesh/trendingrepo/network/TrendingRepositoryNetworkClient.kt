@@ -7,7 +7,7 @@ import retrofit2.Call
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
  */
-class TrendingRepositoryNetworkClient (baseUrl: String) : BaseNetworkClient<ApiService>(baseUrl) {
+class TrendingRepositoryNetworkClient(baseUrl: String) : BaseNetworkClient<ApiService>(baseUrl) {
     private var page: Int = 1
     private var platform: String = "all"
     private var itemsCount: Int = 20

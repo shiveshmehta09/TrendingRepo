@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
  */
-abstract class BaseNetworkClient <S>(baseURL: String) {
+abstract class BaseNetworkClient<S>(baseURL: String) {
     private var httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
     private val retrofit: Retrofit
     var service: S? = null

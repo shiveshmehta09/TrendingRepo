@@ -16,7 +16,8 @@ class NetworkRepository {
          * fun fetches trending repos from the API client
          * */
         fun getTrendingRepos(): Call<TrendingRepositoryResponse>? {
-            return TrendingRepositoryNetworkClient.getInstance(baseUrl).getTrendingRepos()
+            return TrendingRepositoryNetworkClient.getInstance(baseUrl)
+                .getTrendingRepos()
         }
     }
 }
