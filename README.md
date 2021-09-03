@@ -1,6 +1,6 @@
 # TrendingRepo
 Trending Repository
-Tech Stack - MVVM, ViewBinding
+Tech Stack - MVVM, ViewBinding , Kotlin
 
 <img src="trending_one.png" width =300>
 <img src="trending_selected_two.png" width =300>
