@@ -20,13 +20,13 @@ import kotlin.properties.Delegates
  */
 class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel,
                           var list: ArrayList<TrendingRepositoryResponse.Repositories>,
-                          private val context: Context) : RecyclerView.Adapter<TrendingRepoAdapter.ReposViewHolder>() {
+                          private val context: Context) : RecyclerView.Adapter<TrendingRepoAdapter.RepositoryViewHolder>() {
     /**
      * inflates the itemview
      * */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReposViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val binding = ItemRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ReposViewHolder(binding)
+        return RepositoryViewHolder(binding)
     }
 
     /**
@@ -39,11 +39,11 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel,
         }
     }
 
-    override fun onBindViewHolder(holder: ReposViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         holder.bind(list[position], (position == selectedPosition))
     }
 
-    inner class ReposViewHolder(val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RepositoryViewHolder(val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             setSelectionPrev()
 
