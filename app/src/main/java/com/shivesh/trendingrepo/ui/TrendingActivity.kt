@@ -1,5 +1,6 @@
 package com.shivesh.trendingrepo.ui
 
+import androidx.activity.viewModels
 import android.app.SearchManager
 import android.os.Bundle
 import android.view.Menu
@@ -7,7 +8,6 @@ import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,13 +15,15 @@ import com.shivesh.trendingrepo.R
 import com.shivesh.trendingrepo.data.TrendingRepositoryResponse
 import com.shivesh.trendingrepo.databinding.TrendingActivityBinding
 import com.shivesh.trendingrepo.vm.TrendingRepoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by Shivesh K Mehta on 01/09/21.
  * Version 2.0 KTX
  */
+@AndroidEntryPoint
 class TrendingActivity : AppCompatActivity() {
-    private lateinit var viewModel: TrendingRepoViewModel
+    private val viewModel : TrendingRepoViewModel by viewModels()
     private lateinit var listRepos: ArrayList<TrendingRepositoryResponse.Repositories>
     private lateinit var binding: TrendingActivityBinding
 
@@ -31,7 +33,6 @@ class TrendingActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        viewModel = ViewModelProvider(this).get(TrendingRepoViewModel::class.java)
         binding.swipeRefreshLayout.setOnRefreshListener {
             onRefresh()
         }
