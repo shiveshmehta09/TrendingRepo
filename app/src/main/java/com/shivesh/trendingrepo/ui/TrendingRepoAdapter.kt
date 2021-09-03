@@ -64,7 +64,7 @@ class TrendingRepoAdapter(var viewModel: TrendingRepoViewModel,
                     item.forksCount > 0 -> binding.imvFork.visibility = View.VISIBLE
                 }
                 val radius = 10
-                imvAvatar.fetchImage(context, item.owner.avatar, R.drawable.ic_launcher_foreground, radius)
+                imvProfile.fetchImage(context, item.owner.avatar, R.drawable.ic_launcher_foreground, radius)
                 layoutParent.isSelected = selected
             }
         }

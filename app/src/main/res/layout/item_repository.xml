@@ -4,68 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutParent"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:layout_margin="@dimen/margin_10"
+    android:layout_height="wrap_content"
     android:background="@drawable/rectangle_selector"
-    android:padding="@dimen/margin_1">
+    android:padding="@dimen/margin_16">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imvAvatar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imvProfile"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="4,1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txvTitle"
-        style="@style/style1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16"
-        app:layout_constraintEnd_toStartOf="@+id/imvAvatar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imvAvatar"
-        tools:text="heading" />
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="4dp"
+        android:paddingStart="@dimen/margin_10"
+        android:paddingEnd="@dimen/margin_10"
+        android:textColor="@color/item_color_title"
+        android:textSize="@dimen/ts_16"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imvProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/imvProfile"
+        app:layout_constraintStart_toEndOf="@+id/imvProfile"
+        app:layout_constraintTop_toTopOf="@+id/imvProfile"
+        app:layout_constraintVertical_bias="0.18"
+        tools:text="Shivesh Mehta has got to sdsdk" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txvDescription"
-        style="@style/style2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
         android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed"
+        android:lineSpacingExtra="2dp"
         android:maxLines="2"
-        android:textSize="@dimen/ts_16"
-        app:layout_constraintEnd_toStartOf="@+id/imvAvatar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/txvTitle"
-        app:layout_constraintTop_toBottomOf="@id/txvTitle"
-        tools:text="hi to check tools type descriptive data here" />
+        android:padding="4dp"
+        android:textColor="@color/item_color_desc"
+        android:textSize="@dimen/font_xmedium"
+        app:layout_constraintBottom_toTopOf="@+id/txvForks"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txvTitle" />
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imvFork"
-        android:layout_width="59dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_fork"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvDescription"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txvForks"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txvForks"
-        style="@style/style1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin_8"
+        android:paddingLeft="@dimen/margin_8"
+        android:paddingEnd="@dimen/margin_xxlarge"
+        android:paddingRight="@dimen/margin_xxlarge"
+        android:textColor="@color/item_color_like"
+        android:textSize="@dimen/font_xmedium"
+        app:fontFamily="sans-serif-condensed"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvFork"
-        app:layout_constraintTop_toTopOf="@+id/imvFork"
-        tools:text="check data" />
+        app:layout_constraintTop_toBottomOf="@+id/txvDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
