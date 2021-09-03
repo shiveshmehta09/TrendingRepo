@@ -11,7 +11,7 @@ import retrofit2.http.Query
  */
 interface ApiService {
     @GET("search/repositories")
-    fun getTrendingRepos(
+    fun getTrendingRepositories(
         @Query("q") platform: String,
         @Query("per_page") itemsPerPage: Int,
         @Query("page") page: Int,

@@ -12,5 +12,5 @@ class TrendingRepositoryResponse {
     data class Repositories(var name: String?, var owner: Owner, var description: String?,
                             @SerializedName("forks_count") var forksCount: Double)
 
-    class Owner(@SerializedName("avatar_url") val avatar: String)
+    class Owner(@SerializedName("avatar_url") val imgUrl: String)
 }

@@ -39,6 +39,6 @@ class TrendingRepositoryNetworkClient(baseUrl: String) : BaseNetworkClient<ApiSe
      * service fun to fetch trending repos
      */
     fun getTrendingRepos(): Call<TrendingRepositoryResponse>? {
-        return service?.getTrendingRepos(platform, itemsCount, page)
+        return service?.getTrendingRepositories(platform, itemsCount, page)
     }
 }
