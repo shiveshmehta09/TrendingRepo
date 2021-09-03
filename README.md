@@ -2,4 +2,6 @@
 Trending Repository
 Tech Stack - MVVM, ViewBinding
 
-![](trending_one.png)  ![](trending_two.png)  ![](trending_three.png)
+<img src="trending_one.png" width =300>
+<img src="trending_selected_two.png" width =300>
+<img src="trending_search_three.png" width =300>
